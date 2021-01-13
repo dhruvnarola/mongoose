@@ -43,7 +43,7 @@ const mensSchema = new mongoose.Schema({
 mensSchema.methods.generateToken = async function (next) {
     try {
         console.log(this._id)
-        const createToken = jwt.sign({_id: this._id.toString()}, "mynameisdhruvnarolajagdishbhai..");
+        const createToken = jwt.sign({_id: this._id.toString()}, process.env.SECRET_KEY);
         this.tokens = this.tokens.concat({token: createToken})
         await this.save();
         console.log(createToken);
